@@ -118,6 +118,8 @@ func (c *Client) writePump() {
 func serveWs(hub *Hub, w http.ResponseWriter, r *http.Request) {
 	responseHeader := http.Header{}
 	responseHeader.Add("Access-Control-Allow-Origin", "*")
+	origin := "Origin, X-Requested-With, Content-Type, Accept"
+	responseHeader.Add("Access-Control-Allow-Headers", origin)
 	conn, err := upgrader.Upgrade(w, r, responseHeader)
 	if err != nil {
 		log.Println(err)
